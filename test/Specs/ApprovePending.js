@@ -1,6 +1,15 @@
-/*Launch the browser and application
-  click on open account module
-  enter all the valid details and click on submit
+
+import HomePage from "../PageObject/HomePage.js"
+import OpenAccountPage from "../PageObject/OpenAccountPage.js"
+import ConfirmPage from "../PageObject/ConfirmPage.js"
+import StaffLoginPage from "../PageObject/StaffLoginPage.js"
+import StaffHomePage from "../PageObject/StaffHomePage.js"
+import ApprovePendingPage from "../PageObject/ApprovePendingPage.js"
+import ActiveCustomerPage from "../PageObject/ActiveCustomerPage.js"
+
+/*Open the browser and application
+  click on open account link
+  Enter all the valid details and click on submit
   Capture the application number generated in the popup 
   click on ok in the popup
   click on staff login and enter the login details
@@ -10,16 +19,10 @@
   capture the account number from alert popup and accept it
 */
 
-import HomePage from "../POM/HomePage.js"
-import OpenAccountPage from "../POM/OpenAccountPage.js"
-import ConfirmPage from "../POM/ConfirmPage.js"
-import StaffLoginPage from "../POM/StaffLoginPage.js"
-import StaffHomePage from "../POM/StaffHomePage.js"
-import ApprovePendingPage from "../POM/ApprovePendingPage.js"
-import ActiveCustomerPage from "../POM/ActiveCustomerPage.js"
 describe("Online Banking",async()=>{
      let ApplicationNo
      let AccountNum=11
+
     it("navigate to application",async ()=>{
         await browser.maximizeWindow()
         await browser.url("http://testingserver/domain/Online_Banking_System/")
