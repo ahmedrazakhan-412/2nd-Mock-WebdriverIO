@@ -13,7 +13,9 @@
   "scripts": {
     "wdio": "npx wdio run ./wdio.conf.js",
     "ParticularBlock": "wdio --mochaOpts.grep smoke",
-    "OpenAccount": "wdio --spec test/Specs/CreateAccount.js"
+    "OpenAccount": "wdio --spec test/Specs/CreateAccount.js",
+    "ApprovePending": "wdio --spec test/Specs/ApprovePending.js",
+    "SwitchingWindow ": "wdio --spec test/Specs/SwitchingWindow .js"
   },
   "dependencies": {
     "chai": "^4.3.7"
