@@ -4,6 +4,9 @@ import GenericUtilityPage from '../PageObject/GenericUtilitypage.js'
 
 class OpenAccountModule {
 
+    Name = " ";
+    ConfirmDetails = [];
+
     get OpenAccount_link () {
         return $("//li[normalize-space()='Open Account']");
     }
@@ -70,21 +73,16 @@ class OpenAccountModule {
     get AllDetails_Text () {
         return $$("//div[@class='cnfrm_info']/span");
     }
-    Name = "";
-    FullDetails = [this.Name,"Male","9480196003","ahmedrazakhan412@gmail.com","08532-235612","22-10-1992","BYKPP2375G","US00785",
-    "A R Enclave Ground Floor 10,2nd Cross K K Lane Bangalore 560053","Test Yantra Bangalore 560053","California",
-"Fresno","560053","K K Lane Bangalore 560053","Md Mustaq Ahmed ","1011801011046","Saving"];
-    ConfirmDetails = [];
 
     async createAccount () {
 
-        await this.OpenAccount_link.scrollIntoView();
-        await this.OpenAccount_link.click();
-        expect(await browser.getTitle()).to.equal('Registration Form');
+        // await this.OpenAccount_link.scrollIntoView();
+        // await this.OpenAccount_link.click();
+        // expect(await browser.getTitle()).to.equal('Registration Form');
+    
+        // Open Account Details
         let ran = await GenericUtilityPage.randombetween(500,900);
         await browser.pause(2000);
-        
-        // Open Account Details
         let name = "Md Ahmed Raza Khan "+ran;
         this.Name=name;
         await this.Name_tf.setValue(name);
@@ -109,26 +107,41 @@ class OpenAccountModule {
         await this.Submit_btn.click();
        
     }
+   async getName() {
+    await browser.pause(2000);
+    let name = this.Name;
+    return name;
+   }
 
    async checkDetails() {
         await browser.pause(3000);
         expect(await browser.getTitle()).to.equal('Confirm');
+        await browser.scroll(0,500);
         await browser.pause(3000);
         this.AllDetails_Text.forEach(async element => {
         let fullDetails = await element.getText();
         await browser.scroll(0,50);
-        await browser.refresh();
-        this.FullDetails.push(fullDetails);
+        this.ConfirmDetails.push(fullDetails);
         });
-        for (let index = 0; index < this.FullDetails.length; index++) {
-        if (this.ConfirmDetails[index].includes(this.FullDetails[index])) {
-        console.log(+index+"--->"+this.FullDetails[index]+" and "+this.ConfirmDetails[index]+" Both Data are same"); 
-            }
-        } 
         await browser.pause(3000);
         await this.Confirm_btn.scrollIntoView();
         await this.Confirm_btn.click();
-        
+        await browser.pause(3000);
+        this.verify();
+    }
+
+    async verify () {
+    let FullDetails = [this.Name,"Male","9480196003","ahmedrazakhan412@gmail.com","08532-235612","22-10-1992","BYKPP2375G","US00785",
+    "A R Enclave Ground Floor 10,2nd Cross K K Lane Bangalore 560053","Test Yantra Bangalore 560053","California",
+    "Fresno","560053","K K Lane Bangalore 560053","Md Mustaq Ahmed ","1011801011046","Saving"];
+    
+    console.log(this.ConfirmDetails);
+    console.log(FullDetails);
+        for (let index = 0; index < FullDetails.length; index++) {
+        if (await this.ConfirmDetails[index].includes(FullDetails[index])) {
+        console.log(+index+" --->  "+this.ConfirmDetails[index]+" and "+FullDetails[index]+" Both Data are same"); 
+            }
+        } 
     }
 }
 export default new OpenAccountModule();

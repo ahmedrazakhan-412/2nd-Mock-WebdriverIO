@@ -1,4 +1,6 @@
- class HomePage
+import { expect } from "chai";
+
+class HomePage
 {
     get Home_btn(){
         return $(`=Home`)

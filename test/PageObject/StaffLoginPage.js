@@ -15,9 +15,10 @@ class StaffLoginPage
     async StaffLogin_details(){
         await (this.StaffID_tf).setValue(210001)
         await (this.Password_tf).setValue("password")
-        const login = await (this.login_btn)
+        const login = await (this.login_btn);
+        await browser.pause(2000);
         expect(await login.waitForDisplayed({ timeout: 10000 })).to.be.true
-        await login.click()
+        await login.click();
     }
 
 }

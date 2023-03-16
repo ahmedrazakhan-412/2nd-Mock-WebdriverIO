@@ -7,6 +7,7 @@ class ConfirmPage{
     }
     //business library
     async clickOnConfirm_btn(){
+        await  this.confirm_btn.scrollIntoView();
         await (this.confirm_btn).click()
     }
     async isAlertPresent(){

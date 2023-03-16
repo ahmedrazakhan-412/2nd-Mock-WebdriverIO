@@ -60,16 +60,22 @@ export const config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         {
-        maxInstances: 5,
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-                },
+          maxInstances: 5,
+          browserName: 'chrome',
+          acceptInsecureCerts: true,
+          'goog:chromeOptions': {
+                      prefs: {
+                        // 0 - Default, 1 - Allow, 2 - Block
+                        'profile.managed_default_content_settings.notifications': 1
+                      }
+                    }
+                  }
 
-        { 
-        maxInstances: 5,
-        browserName: 'MicrosoftEdge',
-        acceptInsecureCerts: true
-        }
+        // { 
+        // maxInstances: 5,
+        // browserName: 'MicrosoftEdge',
+        // acceptInsecureCerts: true
+        // }
        
 
         // If outputDir is provided WebdriverIO can capture driver session logs
@@ -125,8 +131,8 @@ export const config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     // services: [['selenium-standalone', { port: 4445 }]],
-    services: ['selenium-standalone'],
-
+    // services: ['selenium-standalone'],
+    services: ['chromedriver'],
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks

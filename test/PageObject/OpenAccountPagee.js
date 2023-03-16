@@ -86,6 +86,7 @@ class OpenAccountPage
     expect(await acctype.waitForExist({timeout:3000})).to.be.true
     await acctype.selectByVisibleText("Saving")
     }
+    
     async clickOnSubmit_btn(){
     const submitbtn=await (this.submit_btn)
     await submitbtn.waitForClickable({ timeout: 10000 });
